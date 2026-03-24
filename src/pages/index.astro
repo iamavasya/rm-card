@@ -1,11 +1,140 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import IntroCard from '../components/IntroCard.astro';
+import { getEntry, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const introEntry = await getEntry('intro', 'greeting');
+const rendered = introEntry ? await render(introEntry) : null;
+const Content = rendered?.Content;
+
+
+import Experience from '../components/Experience.astro';
+const experienceData = [
+  {
+    period: "2022 — 2023 (Graduate in 2026)",
+    title: "Студент",
+    company: "Західноукраїнський національний університет, Тернопіль",
+    description: "Навчання на факультеті комп'ютерних наук, спеціальність — ІСТ. Активна участь у студентських проєктах.",
+	tags: ["C++", "C#", "Algorithms & Data Structures", "Git", "Docker", "GitHub", "CI/CD"]
+  },
+  {
+	period: "2024 — 2025",
+	title: "Trainee Software Engineer",
+	company: "GlobalLogic Ukraine",
+	description: "Розробка та підтримка мікросервісного веб-додатку на .NET для медичних клінік та ветеринарів. Впровадження нових функцій та оптимізація існуючих рішень.",
+	tags: [".NET", "Angular", "Web Development", "Agile", "SQL Server", "Azure"]
+  },
+  {
+	period: "2025 — 2026",
+	title: "Associate Software Engineer",
+	company: "GlobalLogic Ukraine",
+	description: "Продовження роботи в проєкті над веб-додатком для медичних клінік. Розробка складних функцій, оптимізація продуктивності та участь у плануванні спринтів.\n Перехід на Python стек для AI ML проєкту.",
+	tags: [".NET", "Python", "AI/ML", "PyTorch", "Scikit-learn"]
+  }
+];
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout title="Rostyslav | .NET Developer & Creator">
+  
+  <section class="max-w-5xl mx-auto px-6 pt-32 text-center animate-fade-up opacity-0">
+    <h2 class="text-sm font-semibold tracking-[0.2em] text-blue-600 uppercase mb-4">
+      Software Engineer & .NET Enthusiast
+    </h2>
+    <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+      Створюю код, який <br/> 
+      <span class="text-transparent bg-clip-text bg-gradient-to-b from-[#333] to-[#000] dark:from-[#fff] dark:to-[#888]">
+        має значення.
+      </span>
+    </h1>
+    <p class="text-xl md:text-2xl opacity-50 max-w-2xl mx-auto leading-relaxed">
+      Працюю над складними системами на .NET, експериментую з Python та волонтерю в Пласті.
+    </p>
+  </section>
+
+  {introEntry && (
+    <section class="max-w-6xl mx-auto px-6 py-12 animate-fade-up opacity-0" style="animation-delay: 0.2s">
+      <IntroCard 
+        title={introEntry.data.title}
+        tags={introEntry.data.tags}
+        memoji={introEntry.data.memoji}
+      >
+        {Content && <Content />}
+      </IntroCard>
+    </section>
+  )}
+
+	<section id="projects" class="max-w-6xl mx-auto px-6 py-20">
+	
+		<div class="mb-12 animate-fade-up opacity-0" style="animation-delay: 0.35s">
+			<span class="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-500 mb-2 opacity-80">
+			Portfolio
+			</span>
+			<h2 class="text-4xl font-bold tracking-tight">
+			Pet-projects
+			</h2>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			{sortedProjects.map((project, index) => (
+			<div 
+				class="animate-fade-up opacity-0" 
+				style={`animation-delay: ${0.45 + index * 0.1}s`}
+			>
+				<ProjectCard 
+				title={project.data.title}
+				description={project.data.description}
+				tags={project.data.tags}
+				slug={project.id}
+				github={project.data.github}
+				/>
+			</div>
+			))}
+		</div>
+	</section>
+
+  <section id="about" class="max-w-5xl mx-auto px-6 py-32 mt-10 animate-fade-up opacity-0" style="animation-delay: 0.7s">
+    <div class="relative z-10 text-center">
+      <span class="inline-block text-[11px] font-bold uppercase tracking-[0.3em] text-blue-500 mb-6 opacity-80">
+        Philosphy & Mindset
+      </span>
+
+      <h3 class="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
+        Більше, ніж просто код
+      </h3>
+
+      <p class="text-xl md:text-2xl opacity-50 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
+        Коли не пишу код, я займаюся музикою, цікавлюся історією, читаю книжки або працюю з залізом. 
+        Вірю, що найкращі ідеї та рішення народжуються на перетині технологій та творчості.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        {[ "ProjectK", "Music", "Plast volunteer", "Hardware Enthusiast" ].map((item) => (
+          <span class="px-6 py-2 border border-black/10 dark:border-white/10 rounded-full text-xs font-semibold tracking-wide hover:border-blue-500/50 transition-colors duration-300">
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="max-w-6xl mx-auto px-6 py-20">
+  
+  <div class="mb-16 animate-fade-up opacity-0" style="animation-delay: 0.8s">
+    <span class="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">
+      Journey
+    </span>
+    <h2 class="text-4xl font-bold tracking-tight">Досвід</h2>
+  </div>
+
+  <div class="animate-fade-up opacity-0" style="animation-delay: 0.9s">
+    <Experience items={experienceData} />
+  </div>
+  
+</section>
+
+</MainLayout>

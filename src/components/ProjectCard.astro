@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  slug: string;
+  github?: string;
+}
+
+const { title, description, tags, slug, github } = Astro.props;
+---
+
+<div class="group relative">
+  <a 
+    href={`/projects/${slug}`} 
+    class="block p-8 rounded-[2rem] bg-white/5 dark:bg-[#161617]/40 border border-black/5 dark:border-white/10 backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-blue-500/30 overflow-hidden"
+  >
+    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity font-mono text-[10px] pointer-events-none select-none">
+      01001010 01011010 01100100
+    </div>
+    
+    <div class="relative z-10">
+      <div class="flex justify-between items-start mb-6">
+        <div class="flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10">
+              {tag}
+            </span>
+          ))}
+        </div>
+        
+        <svg class="size-5 opacity-0 -translate-x-2 group-hover:opacity-40 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </div>
+
+      <h3 class="text-3xl font-bold mb-3 tracking-tight group-hover:text-blue-500 transition-colors">
+        {title}
+      </h3>
+      <p class="text-secondary opacity-60 leading-relaxed line-clamp-2">
+        {description}
+      </p>
+    </div>
+  </a>
+
+{github && (
+    <a 
+      href={github} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+
+      class="absolute bottom-6 right-8 p-3 rounded-full 
+             bg-black/10 dark:bg-white/5 
+             text-black/40 dark:text-white/40 
+             border border-black/5 dark:border-white/10 
+             backdrop-blur-sm
+             
+             opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 
+             
+             hover:text-black dark:hover:text-white hover:scale-110 hover:bg-black/20 dark:hover:bg-white/10
+             
+             transition-all duration-500 ease-out z-20 shadow-lg"
+      aria-label="View Source on GitHub"
+    >
+      <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.192.694.805.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+    </a>
+  )}
+</div>

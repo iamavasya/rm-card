@@ -1,0 +1,53 @@
+---
+interface Props {
+	title: string;
+	tags: string[];
+	memoji: string;
+}
+
+const { title, tags, memoji } = Astro.props;
+---
+
+<div class="intro-card-glow group relative animate-fade-up">
+  <div class="absolute -inset-10 -z-10 bg-gradient-to-r from-cyan-400 via-purple-600 to-rose-400 opacity-10 blur-[100px] transition-opacity duration-1000 group-hover:opacity-20"></div>
+
+  <div class="glass relative flex flex-col items-center gap-10 rounded-[3rem] border border-black/5 p-12 text-center md:flex-row md:text-left dark:border-white/10">
+    
+    <div class="flex-shrink-0">
+      <img 
+        src={memoji} 
+        alt="Мемоджі Ростислава" 
+        class="size-64 animate-memoji-float hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+
+    <div class="flex-grow">
+      <div class="mb-6 flex flex-wrap gap-2 justify-center md:justify-start">
+        {tags.map(tag => (
+          <span class="text-[11px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+        {title}
+      </h2>
+
+      <div class="prose prose-p:text-lg prose-p:opacity-60 prose-p:leading-relaxed dark:prose-invert max-w-none">
+        <slot />
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<style>
+  @keyframes memoji-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-memoji-float {
+    animation: memoji-float 6s ease-in-out infinite;
+  }
+</style>

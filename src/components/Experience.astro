@@ -1,0 +1,57 @@
+---
+interface Props {
+  items: {
+    period: string;
+    title: string;
+    company: string;
+    description: string;
+    tags?: string[];
+  }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="relative">
+  <div class="absolute left-4 top-0 h-full w-[1px] bg-gradient-to-b from-blue-500/50 via-black/10 to-transparent dark:via-white/10 dark:to-transparent md:left-1/2"></div>
+
+  <div class="space-y-12">
+    {items.map((item, index) => (
+      <div class={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+        
+        <div class="absolute left-4 top-1.5 z-10 size-2 -translate-x-1/2 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.5)] md:left-1/2"></div>
+
+        <div class="w-full pl-12 md:w-1/2 md:pl-0">
+          <div class={`glass p-8 rounded-3xl border border-black/5 dark:border-white/10 transition-all duration-500 hover:scale-[1.01] ${index % 2 === 0 ? 'md:ml-12' : 'md:mr-12 text-right'}`}>
+            
+            <span class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-500 opacity-60">
+              {item.period}
+            </span>
+            
+            <h3 class="mt-2 text-2xl font-bold tracking-tight">{item.title}</h3>
+            
+            <div class="mt-1 text-sm font-medium opacity-40 italic">
+              {item.company}
+            </div>
+            
+            <p class="mt-4 text-base opacity-60 leading-relaxed">
+              {item.description}
+            </p>
+
+            {item.tags && (
+              <div class={`mt-6 flex flex-wrap gap-2 ${index % 2 === 0 ? 'justify-start' : 'md:justify-end justify-start'}`}>
+                {item.tags.map(tag => (
+                  <span class="text-[9px] font-bold uppercase tracking-tighter px-2 py-0.5 rounded-md bg-white/5 border border-white/10">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div class="hidden md:block md:w-1/2"></div>
+      </div>
+    ))}
+  </div>
+</div>

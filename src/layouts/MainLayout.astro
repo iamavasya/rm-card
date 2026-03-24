@@ -1,0 +1,48 @@
+---
+import Navigation from '../components/Navigation.astro';
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="uk">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+		<ClientRouter />
+	</head>
+	
+<body class="bg-[#fbfbfd] text-[#1d1d1f] antialiased dark:bg-[#000] dark:text-[#f5f5f7] min-h-screen relative z-0 selection:bg-blue-100 dark:selection:bg-blue-900/30">
+		
+		<div class="absolute inset-0 z-[-20] parallax-container" aria-hidden="true">
+			
+			<div class="absolute top-[-5%] right-[-5%] w-[600px] h-[600px] 
+						bg-cyan-400/40 rounded-full blur-[120px] 
+						animate-blob layer-fast mix-blend-screen dark:mix-blend-plus-lighter">
+			</div>
+			
+			<div class="absolute top-[20%] left-[-10%] w-[700px] h-[700px] 
+						bg-purple-500/30 rounded-full blur-[140px] 
+						animate-blob-reverse layer-slow mix-blend-multiply dark:mix-blend-screen">
+			</div>
+
+			<div class="absolute bottom-[10%] right-[20%] w-[400px] h-[400px] 
+						bg-rose-400/25 rounded-full blur-[100px] 
+						animate-blob layer-base mix-blend-screen">
+			</div>
+
+		</div>
+		<Navigation />
+		
+		<main class="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-20">
+			<slot />
+		</main>
+
+		</body>
+</html>
