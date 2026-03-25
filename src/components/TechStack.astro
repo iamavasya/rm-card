@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const icons = [
+  { slug: 'simple-icons:dotnet', color: 'text-[#512BD4]', top: '12%', left: '15%', delay: '0s' },
+  { slug: 'simple-icons:csharp', color: 'text-[#512BD4]', top: '22%', left: '82%', delay: '4s' },
+  { slug: 'simple-icons:python', color: 'text-[#3776AB]', top: '68%', left: '10%', delay: '2s' },
+  { slug: 'simple-icons:docker', color: 'text-[#2496ED]', top: '75%', left: '88%', delay: '1.5s' },
+  { slug: 'simple-icons:postgresql', color: 'text-[#4169E1]', top: '18%', left: '55%', delay: '3s' },
+  { slug: 'simple-icons:visualstudiocode', color: 'text-[#007ACC]', top: '42%', left: '5%', delay: '0.5s' },
+  { slug: 'simple-icons:angular', color: 'text-[#DD0031]', top: '52%', left: '92%', delay: '3.5s' },
+  { slug: 'simple-icons:github', color: 'text-black dark:text-white/30', top: '85%', left: '45%', delay: '5s' },
+];
+---
+
+<section class="relative max-w-6xl mx-auto px-6 py-32 overflow-hidden rounded-[3rem] border border-black/5 dark:border-white/10 bg-white/5 backdrop-blur-sm group">
+  
+  <div class="absolute inset-0 -z-10 pointer-events-none select-none opacity-20 dark:opacity-40">
+    {icons.map(icon => (
+      <div 
+        class={`absolute animate-float ${icon.color}`}
+        style={`top: ${icon.top}; left: ${icon.left}; animation-delay: ${icon.delay};`}
+      >
+        <Icon 
+          name={icon.slug} 
+          class="size-16 md:size-24 filter blur-[2px] group-hover:blur-none transition-all duration-700 opacity-30 group-hover:opacity-100" 
+        />
+      </div>
+    ))}
+  </div>
+
+  <div class="relative z-10 text-center max-w-3xl mx-auto">
+    <span class="inline-block text-[11px] font-bold uppercase tracking-[0.3em] text-blue-500 mb-6">
+      Stack & Ecosystem
+    </span>
+    
+    <h2 class="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
+      Інструменти, якими я володію
+    </h2>
+    
+    <p class="text-xl opacity-60 leading-relaxed mb-12">
+      Мій основний фокус — екосистема .NET та архітектура складних систем. 
+      Але я завжди відкритий до нових тулзів, які роблять код чистішим.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+      <a href="/skills" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold hover:scale-105 transition-transform shadow-xl shadow-blue-500/10">
+        Всі хард скіли
+      </a>
+      
+      <a href="/soft-skills" class="group/btn flex items-center gap-2 text-sm font-semibold opacity-60 hover:opacity-100 transition-opacity">
+        Шукаєте більш м'які навички?
+        <span class="group-hover/btn:translate-x-1 transition-transform">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(40px, -60px) rotate(10deg); }
+    66% { transform: translate(-30px, 30px) rotate(-10deg); }
+  }
+  .animate-float {
+    animation: float 12s ease-in-out infinite;
+  }
+</style>

@@ -4,6 +4,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import IntroCard from '../components/IntroCard.astro';
 import { getEntry, render } from 'astro:content';
 import { getCollection } from 'astro:content';
+import TechStack from '../components/TechStack.astro';
 
 const introEntry = await getEntry('intro', 'greeting');
 const rendered = introEntry ? await render(introEntry) : null;
@@ -135,6 +136,10 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
     <Experience items={experienceData} />
   </div>
   
+</section>
+
+<section class="py-20 animate-fade-up opacity-0" style="animation-delay: 1s">
+  <TechStack />
 </section>
 
 </MainLayout>
