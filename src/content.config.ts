@@ -15,10 +15,10 @@ const projects = defineCollection({
 
 const intro = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/intro" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     tags: z.array(z.string()),
-    memoji: z.string(),
+    memoji: image(),
   }),
 });
 
