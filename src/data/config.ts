@@ -1,5 +1,5 @@
 export const siteConfig = {
-  isOpenToWork: true, 
+  isOpenToWork: false, 
   
   workplace: "GlobalLogic",
   
