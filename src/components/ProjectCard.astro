@@ -10,16 +10,16 @@ interface Props {
 const { title, description, tags, slug, github } = Astro.props;
 ---
 
-<div class="group relative">
+<div class="group relative h-full">
   <a 
     href={`/projects/${slug}`} 
-    class="block p-8 rounded-[2rem] bg-white/5 dark:bg-[#161617]/40 border border-black/5 dark:border-white/10 backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-blue-500/30 overflow-hidden"
+    class="flex flex-col h-full p-8 rounded-[2rem] bg-white/5 dark:bg-[#161617]/40 border border-black/5 dark:border-white/10 backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-blue-500/30 overflow-hidden"
   >
     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity font-mono text-[10px] pointer-events-none select-none">
       01001010 01011010 01100100
     </div>
     
-    <div class="relative z-10">
+    <div class="relative z-10 flex flex-col h-full">
       <div class="flex justify-between items-start mb-6">
         <div class="flex flex-wrap gap-2">
           {tags.map(tag => (
@@ -29,36 +29,33 @@ const { title, description, tags, slug, github } = Astro.props;
           ))}
         </div>
         
-        <svg class="size-5 opacity-0 -translate-x-2 group-hover:opacity-40 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="size-5 shrink-0 opacity-0 -translate-x-2 group-hover:opacity-40 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </div>
 
-      <h3 class="text-3xl font-bold mb-3 tracking-tight group-hover:text-blue-500 transition-colors">
+      <h3 class="text-3xl font-bold mb-3 tracking-tight group-hover:text-blue-500 transition-colors break-words">
         {title}
       </h3>
-      <p class="text-secondary opacity-60 leading-relaxed line-clamp-2">
+      
+      <p class="text-secondary opacity-60 leading-relaxed flex-grow pb-8">
         {description}
       </p>
     </div>
   </a>
 
-{github && (
+  {github && (
     <a 
       href={github} 
       target="_blank" 
       rel="noopener noreferrer" 
-
       class="absolute bottom-6 right-8 p-3 rounded-full 
              bg-black/10 dark:bg-white/5 
              text-black/40 dark:text-white/40 
              border border-black/5 dark:border-white/10 
              backdrop-blur-sm
-             
              opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 
-             
              hover:text-black dark:hover:text-white hover:scale-110 hover:bg-black/20 dark:hover:bg-white/10
-             
              transition-all duration-500 ease-out z-20 shadow-lg"
       aria-label="View Source on GitHub"
     >
