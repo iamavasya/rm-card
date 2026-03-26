@@ -11,10 +11,7 @@ const { title, description, tags, slug, github } = Astro.props;
 ---
 
 <div class="group relative h-full">
-  <a 
-    href={`/projects/${slug}`} 
-    class="flex flex-col h-full p-8 rounded-[2rem] bg-white/5 dark:bg-[#161617]/40 border border-black/5 dark:border-white/10 backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-blue-500/30 overflow-hidden"
-  >
+  <a href={`/projects/${slug}`} class="flex flex-col h-full p-8 rounded-[2rem] bg-white/5 dark:bg-[#161617]/40 border border-black/5 dark:border-white/10 backdrop-blur-md transition duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-blue-500/30 overflow-hidden transform-gpu">
     <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-10 transition-opacity font-mono text-[10px] pointer-events-none select-none">
       01001010 01011010 01100100
     </div>
@@ -34,11 +31,11 @@ const { title, description, tags, slug, github } = Astro.props;
         </svg>
       </div>
 
-      <h3 class="text-3xl font-bold mb-3 tracking-tight group-hover:text-blue-500 transition-colors break-words">
+      <h3 class="text-3xl font-bold mb-3 tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7] group-hover:text-blue-500 transition-colors duration-500 break-words">
         {title}
       </h3>
       
-      <p class="text-secondary opacity-60 leading-relaxed flex-grow pb-8">
+      <p class="text-[#1d1d1f] dark:text-[#f5f5f7] opacity-60 leading-relaxed flex-grow pb-8 transition-colors duration-500">
         {description}
       </p>
     </div>
