@@ -5,6 +5,7 @@ import IntroCard from '../components/IntroCard.astro';
 import { getEntry, render } from 'astro:content';
 import { getCollection } from 'astro:content';
 import TechStack from '../components/TechStack.astro';
+import Footer from '../components/Footer.astro';
 
 const introEntry = await getEntry('intro', 'greeting');
 const rendered = introEntry ? await render(introEntry) : null;
@@ -97,7 +98,7 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
     </div>
   </section>
 
-  	<section id="projects" class="max-w-6xl mx-auto px-6 py-20">
+  <section id="projects" class="max-w-6xl mx-auto px-6 py-20">
 	
 		<div class="mb-12 animate-fade-up opacity-0" style="animation-delay: 0.35s">
 			<span class="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-500 mb-2 opacity-80">
@@ -128,21 +129,25 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 
   <section id="experience" class="max-w-6xl mx-auto px-6 py-20">
   
-  <div class="mb-16 animate-fade-up opacity-0" style="animation-delay: 0.8s">
-    <span class="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">
-      Journey
-    </span>
-    <h2 class="text-4xl font-bold tracking-tight">Досвід</h2>
-  </div>
+    <div class="mb-16 animate-fade-up opacity-0" style="animation-delay: 0.8s">
+      <span class="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">
+        Journey
+      </span>
+      <h2 class="text-4xl font-bold tracking-tight">Досвід</h2>
+    </div>
 
-  <div class="animate-fade-up opacity-0" style="animation-delay: 0.9s">
-    <Experience items={experienceData} />
-  </div>
+    <div class="animate-fade-up opacity-0" style="animation-delay: 0.9s">
+      <Experience items={experienceData} />
+    </div>
   
-</section>
+  </section>
 
-<section class="py-20 animate-fade-up opacity-0" style="animation-delay: 1s">
-  <TechStack />
-</section>
+  <section class="py-20 animate-fade-up opacity-0" style="animation-delay: 1s">
+    <TechStack />
+  </section>
+
+  <section id="contacts">
+    <Footer />
+  </section>
 
 </MainLayout>
