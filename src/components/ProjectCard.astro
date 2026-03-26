@@ -20,9 +20,9 @@ const { title, description, tags, slug, github } = Astro.props;
       <div class="flex justify-between items-start mb-6">
         <div class="flex flex-wrap gap-2">
           {tags.map(tag => (
-            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10">
-              {tag}
-            </span>
+          <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/10 transition-colors duration-500">
+            {tag}
+          </span>
           ))}
         </div>
         
