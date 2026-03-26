@@ -2,6 +2,8 @@ export const siteConfig = {
   isOpenToWork: false, 
   
   workplace: "GlobalLogic",
+
+  email: "rostyslav.mukha@gmail.com",
   
   statusMessages: {
     open: "Open to new opportunities",
