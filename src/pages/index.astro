@@ -12,6 +12,7 @@ const Content = rendered?.Content;
 
 
 import Experience from '../components/Experience.astro';
+import EngineeringInsights from '../components/EngineeringInsights.astro';
 const experienceData = [
   {
     period: "2022 — 2023 (Graduate in 2026)",
@@ -69,7 +70,34 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
     </section>
   )}
 
-	<section id="projects" class="max-w-6xl mx-auto px-6 py-20">
+  <EngineeringInsights />
+
+  <section id="about" class="max-w-5xl mx-auto px-6 py-32 mt-5 animate-fade-up opacity-0" style="animation-delay: 0.7s">
+    <div class="relative z-10 text-center">
+      <span class="inline-block text-[11px] font-bold uppercase tracking-[0.3em] text-blue-500 mb-6 opacity-80">
+        Philosphy & Mindset
+      </span>
+
+      <h3 class="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
+        Більше, ніж просто код
+      </h3>
+
+      <p class="text-xl md:text-2xl opacity-50 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
+        Коли не пишу код, я займаюся музикою, цікавлюся історією, читаю книжки або працюю з залізом. 
+        Вірю, що найкращі ідеї та рішення народжуються на перетині технологій та творчості.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        {[ "ProjectK", "Music", "Plast volunteer", "Hardware Enthusiast" ].map((item) => (
+          <span class="px-6 py-2 border border-black/10 dark:border-white/10 rounded-full text-xs font-semibold tracking-wide hover:border-blue-500/50 transition-colors duration-300">
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  	<section id="projects" class="max-w-6xl mx-auto px-6 py-20">
 	
 		<div class="mb-12 animate-fade-up opacity-0" style="animation-delay: 0.35s">
 			<span class="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-500 mb-2 opacity-80">
@@ -97,31 +125,6 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 			))}
 		</div>
 	</section>
-
-  <section id="about" class="max-w-5xl mx-auto px-6 py-32 mt-10 animate-fade-up opacity-0" style="animation-delay: 0.7s">
-    <div class="relative z-10 text-center">
-      <span class="inline-block text-[11px] font-bold uppercase tracking-[0.3em] text-blue-500 mb-6 opacity-80">
-        Philosphy & Mindset
-      </span>
-
-      <h3 class="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
-        Більше, ніж просто код
-      </h3>
-
-      <p class="text-xl md:text-2xl opacity-50 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
-        Коли не пишу код, я займаюся музикою, цікавлюся історією, читаю книжки або працюю з залізом. 
-        Вірю, що найкращі ідеї та рішення народжуються на перетині технологій та творчості.
-      </p>
-
-      <div class="flex flex-wrap justify-center gap-3">
-        {[ "ProjectK", "Music", "Plast volunteer", "Hardware Enthusiast" ].map((item) => (
-          <span class="px-6 py-2 border border-black/10 dark:border-white/10 rounded-full text-xs font-semibold tracking-wide hover:border-blue-500/50 transition-colors duration-300">
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <section id="experience" class="max-w-6xl mx-auto px-6 py-20">
   

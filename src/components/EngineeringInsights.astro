@@ -1,0 +1,115 @@
+---
+// src/components/EngineeringInsights.astro
+
+const insights = [
+  {
+    label: "Рядків коду",
+    value: "1.2M+",
+    description: "Написано, відрефакторено та закоммічено з початку 2022 року",
+    size: "large", // Займає 2 колонки
+    gradient: "from-blue-600 via-cyan-500 to-teal-400",
+    shadow: "shadow-blue-500/20",
+    delay: "0.1s"
+  },
+  {
+    label: "Dev Fuel",
+    value: "450+",
+    description: "Кружок кави та банок енергетиків для Deep Work сесій",
+    size: "small", // Займає 1 колонку
+    gradient: "from-orange-500 via-rose-500 to-amber-400",
+    shadow: "shadow-orange-500/20",
+    delay: "0.2s"
+  },
+  {
+    label: "Deep Work",
+    value: "4,200+",
+    description: "Годин концентрації в IDE, терміналі та за дебагом",
+    size: "small", // Займає 1 колонку
+    gradient: "from-purple-600 via-indigo-500 to-sky-400",
+    shadow: "shadow-purple-500/20",
+    delay: "0.3s"
+  },
+  {
+    label: "Bugs Fixed",
+    value: "∞",
+    description: "Виправлених помилок, збережених нервів та закритих тікетів",
+    size: "small", // Займає 2 колонки (другий ряд)
+    gradient: "from-emerald-500 via-teal-500 to-lime-400",
+    shadow: "shadow-emerald-500/20",
+    delay: "0.4s"
+  },
+  {
+    label: "Проєкти",
+    value: "5+",
+    description: "Доведено до релізу: від скриптів до мікросервісів",
+    size: "small",
+    gradient: "from-fuchsia-600 via-purple-500 to-pink-400",
+    shadow: "shadow-fuchsia-500/20",
+    delay: "0.5s"
+  },
+  {
+    label: "Stack Transition",
+    value: ".NET → Py",
+    description: "Успішний перехід зі стеку .NET на Python для AI/ML проєкту в GlobalLogic.",
+    size: "large",
+    gradient: "from-yellow-400 to-orange-500",
+    shadow: "shadow-yellow-500/20",
+    delay: "0.2s"
+  },
+];
+---
+
+<section id="insights" class="max-w-6xl mx-auto px-6 py-28 transition-colors duration-500">
+  
+  <div class="mb-16 animate-fade-up">
+    <span class="inline-block text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-2 opacity-80">
+      Engineering Metrics
+    </span>
+    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7] transition-colors duration-500">
+      Engineering Insights
+    </h2>
+    <p class="text-xl md:text-2xl mt-4 opacity-50 max-w-2xl leading-relaxed text-[#1d1d1f] dark:text-[#f5f5f7] transition-colors duration-500">
+        Цікава статистика, що стоїть за написанням коду.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+    
+    {insights.map((stat) => (
+      <div 
+        class={`animate-fade-up opacity-0 group relative overflow-hidden rounded-[3rem] 
+               bg-white/5 dark:bg-[#161617]/40 border border-black/5 dark:border-white/10 backdrop-blur-md 
+               transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/20
+               ${stat.size === 'large' ? 'lg:col-span-2' : 'lg:col-span-1'}
+               flex flex-col p-10`}
+        style={`animation-delay: ${stat.delay};`}
+      >
+        <div class={`absolute -right-10 -top-10 size-48 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700`}></div>
+
+        <div class="flex items-center gap-5 mb-8">
+          <div class={`relative size-12 flex-shrink-0 group-hover:rotate-6 transition-transform duration-500`}>
+             <div class={`absolute inset-0 bg-gradient-to-tr ${stat.gradient} ${stat.shadow} rounded-2xl`}></div>
+             <div class="absolute inset-0 bg-white/10 rounded-2xl border border-white/20"></div>
+             <div class="absolute top-1.5 left-1.5 right-1.5 h-4 bg-white/20 rounded-lg blur-sm"></div>
+          </div>
+          
+            <div class={`font-bold tracking-tight text-[#1d1d1f] dark:text-[#f5f5f7] transition-colors duration-500 leading-tight
+                        ${stat.size === 'large' ? 'text-2xl' : 'text-xl'}`}>
+            {stat.label}
+            </div>
+        </div>
+
+        <div class={`font-black tracking-tighter text-[#1d1d1f] dark:text-[#f5f5f7] transition-colors duration-500 
+                    ${stat.size === 'large' ? 'text-6xl' : 'text-5xl'} mb-2`}>
+            {stat.value}
+        </div>
+          
+        <p class="text-sm opacity-50 leading-relaxed text-[#1d1d1f] dark:text-[#f5f5f7] transition-colors duration-500 max-w-sm mt-auto">
+            {stat.description}
+        </p>
+
+      </div>
+    ))}
+  </div>
+
+</section>
