@@ -22,7 +22,6 @@ const { title } = Astro.props;
 
 			const suppressThemeTransitions = () => {
 				root.classList.add('theme-switching');
-				// Force style recalculation so transition suppression applies immediately.
 				void root.offsetHeight;
 				requestAnimationFrame(() => {
 					requestAnimationFrame(() => {
@@ -51,10 +50,8 @@ const { title } = Astro.props;
 				setTheme(theme);
 			};
 
-			// Запускаємо одразу при прямому заході на сайт
 			applyTheme();
 
-			// МАГІЯ ТУТ: втручаємося ПЕРЕД підміною DOM під час переходів
 			document.addEventListener('astro:before-swap', (e) => {
 				const isDark = root.classList.contains('dark');
 				e.newDocument.documentElement.classList.toggle('dark', isDark);

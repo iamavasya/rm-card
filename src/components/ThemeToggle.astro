@@ -1,5 +1,5 @@
 ---
-// src/components/ThemeToggle.astro
+
 ---
 
 <button 
@@ -28,7 +28,6 @@
   const initThemeToggle = () => {
     const toggleBtn = document.getElementById('theme-toggle');
     if (toggleBtn) {
-      // Пряме призначення обробника події гарантує, що він спрацює
       toggleBtn.onclick = () => {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
@@ -37,9 +36,7 @@
     }
   };
 
-  // Запуск при першому відкритті сторінки
   initThemeToggle();
   
-  // Перезапуск скрипта після навігації Astro (якщо ти перейдеш на іншу сторінку)
   document.addEventListener('astro:page-load', initThemeToggle);
 </script>

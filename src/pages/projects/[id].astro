@@ -5,7 +5,6 @@ import Navigation from '../../components/Navigation.astro';
 import Footer from '../../components/Footer.astro';
 import { Icon } from 'astro-icon/components';
 
-// 1. Вказуємо Astro, які шляхи (URL) треба згенерувати
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map(entry => ({
@@ -14,7 +13,6 @@ export async function getStaticPaths() {
   }));
 }
 
-// 2. Отримуємо дані для поточної сторінки
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
