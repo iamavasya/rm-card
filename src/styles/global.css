@@ -88,6 +88,18 @@
 }
 
 @layer utilities {
+  .theme-switching :not(#theme-toggle):not(#theme-toggle *),
+  .theme-switching :not(#theme-toggle):not(#theme-toggle *)::before,
+  .theme-switching :not(#theme-toggle):not(#theme-toggle *)::after {
+    transition: none !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
   .animate-memoji-swing {
     transform-origin: bottom center;
     transform-gpu: translateZ(0);
