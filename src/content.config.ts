@@ -1,5 +1,4 @@
 import { defineCollection, z } from 'astro:content';
-// Імпортуємо завантажувач для локальних файлів
 import { glob } from 'astro/loaders'; 
 
 const projects = defineCollection({

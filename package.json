@@ -13,9 +13,13 @@
   },
   "dependencies": {
     "@iconify-json/simple-icons": "^1.2.75",
+    "@iconify-json/tabler": "^1.2.33",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.8",
     "astro-icon": "^1.1.5",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19"
   }
 }

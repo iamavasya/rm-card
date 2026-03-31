@@ -21,15 +21,21 @@ const { title } = Astro.props;
 				const theme = localStorage.getItem('theme') || 
 				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 				if (theme === 'dark') {
-				document.documentElement.classList.add('dark');
+					document.documentElement.classList.add('dark');
 				} else {
-				document.documentElement.classList.remove('dark');
+					document.documentElement.classList.remove('dark');
 				}
 			};
-			// Запускаємо одразу
+
+			// Запускаємо одразу при прямому заході на сайт
 			applyTheme();
-			// Запускаємо після переходів між сторінками (Astro Transitions)
-			document.addEventListener('astro:after-swap', applyTheme);
+
+			// МАГІЯ ТУТ: втручаємося ПЕРЕД підміною DOM під час переходів
+			document.addEventListener('astro:before-swap', (e) => {
+				// Просто копіюємо всі класи (включно з 'dark') з поточної сторінки 
+				// на нову сторінку ЩЕ ДО того, як браузер її намалює
+				e.newDocument.documentElement.className = document.documentElement.className;
+			});
 		</script>
 	</head>
 	
