@@ -1,0 +1,337 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Footer from '../../components/Footer.astro';
+import { Icon } from 'astro-icon/components';
+
+const skillCategories = [
+  { 
+    id: 'backend', 
+    title: 'Backend & Cloud', 
+    icon: 'tabler:server',
+    color: 'text-cyan-500', 
+    bg: 'bg-cyan-500/10', 
+    border: 'border-cyan-500/20',
+    gradient: 'from-cyan-500/5 to-transparent',
+    skills: [
+      { 
+        title: 'C# & .NET', 
+        description: 'Розробка масштабованих бекенд-систем, тестування та використання екосистеми .NET.', 
+        fullDescription: 'Створюю надійні серверні рішення на платформі .NET (від .NET 8 з поточним фокусом на міграцію до .NET 10) за допомогою ASP.NET Core. Використовую багатий інструментарій екосистеми: MediatR, AutoMapper, Velopack. Особливу увагу приділяю якості коду — покриваю логіку тестами за допомогою xUnit, MSTest та FluentAssertions. Основні середовища розробки: Visual Studio та VS Code.',
+        icon: 'simple-icons:dotnet' 
+      },
+      { 
+        title: 'Databases & ORM', 
+        description: 'Проєктування БД, написання складних запитів та надійне управління міграціями.', 
+        fullDescription: 'Маю глибокий досвід роботи з Microsoft SQL Server (MSSQL) та SQLite, а також базові навички роботи з MySQL та PostgreSQL. Взаємодію з даними як через чистий SQL, так і через сучасні ORM, зокрема Entity Framework Core. Використовую EvolveDB для контролю версій БД та безпечного управління міграціями. Основні інструменти адміністрування: SSMS та MySQL Workbench.',
+        icon: 'tabler:database' 
+      },
+      { 
+        title: 'Architecture & API', 
+        description: 'Імплементація сучасних архітектурних патернів та проєктування REST API.', 
+        fullDescription: 'Маю практичний досвід проєктування як монолітних, так і мікросервісних архітектур. Активно застосовую патерни CQRS, Repository та Dependency Injection для створення гнучкого коду, який легко підтримувати та масштабувати. Для інтерактивного тестування та дебагу API використовую Postman, а для генерації стандартної документації — Swagger/OpenAPI.',
+        icon: 'tabler:api' 
+      },
+      { 
+        title: 'Cloud, Docker & CI/CD', 
+        description: 'Контейнеризація додатків, налаштування пайплайнів та хмарний деплой.', 
+        fullDescription: 'Маю практичний досвід розгортання .NET бекенд-сервісів у хмарі Microsoft Azure. Вмію контейнеризувати повноцінні додатки (фронтенд, бекенд та бази даних) за допомогою Docker. Для автоматизації процесів збірки, тестування та деплою (CI/CD) впевнено використовую GitHub Actions, а також інструменти екосистеми Azure DevOps (Pipelines, Repos).',
+        icon: 'tabler:brand-docker' 
+      },
+    ]
+  },
+  { 
+    id: 'web', 
+    title: 'Frontend & Tools', 
+    icon: 'tabler:browser',
+    color: 'text-amber-500', 
+    bg: 'bg-amber-500/10', 
+    border: 'border-amber-500/20',
+    gradient: 'from-amber-500/5 to-transparent',
+    skills: [
+      { 
+        title: 'Angular & TypeScript', 
+        description: 'Розробка складних SPA для ентерпрайзу та власної екосистеми.', 
+        fullDescription: 'Маю глибокий досвід роботи з Angular (від v12 на комерційних проєктах до сучасних v17-18 у власних). Разом з фреймворком активно використовую TypeScript, віддаючи йому абсолютну перевагу над чистим JS. Для свого великого проєкту "Project K" імплементував стейт-менеджмент та складну логіку взаємодії компонентів.',
+        icon: 'simple-icons:angular' 
+      },
+      { 
+        title: 'UI/UX, Tailwind & PrimeNG', 
+        description: 'Проєктування інтерфейсів та створення преміального дизайну.', 
+        fullDescription: 'Для складних персональних проєктів самостійно малюю дизайн у Figma. Вважаю Tailwind CSS абсолютним "must-have" для стилізації. В ентерпрайз-розробці використовую потужну зв\'язку PrimeNG + Tailwind для швидкої побудови складних UI-компонентів, хоча також маю впевнений досвід роботи з чистим CSS та Bootstrap.',
+        icon: 'simple-icons:tailwindcss' 
+      },
+      { 
+        title: 'Astro', 
+        description: 'Побудова швидких та оптимізованих статичних сайтів.', 
+        fullDescription: 'Використовую Astro як зручний та сучасний інструмент для швидкої розробки красивих статичних сайтів (зокрема цього портфоліо). Ціную його за архітектуру, яка дозволяє доставляти мінімальну кількість JavaScript на клієнт, зберігаючи при цьому преміальний вигляд.',
+        icon: 'simple-icons:astro' 
+      },
+      { 
+        title: 'Git & Version Control', 
+        description: 'Професійний контроль версій та маніпуляції з репозиторіями.', 
+        fullDescription: 'Відмінно володію Git: розумію всі принципи роботи, вільно виконую складні маніпуляції з гілками та комітами. GitHub є моїм основним хостом коду. Для щоденної ефективної роботи використовую графічний клієнт Fork, маю минулий досвід з GitHub Desktop та цікавлюся потужними інструментами на кшталт GitKraken.',
+        icon: 'simple-icons:git' 
+      }
+    ]
+  },
+  { 
+    id: 'ai', 
+    title: 'AI & Data Science', 
+    icon: 'tabler:brain',
+    color: 'text-purple-500', 
+    bg: 'bg-purple-500/10', 
+    border: 'border-purple-500/20',
+    gradient: 'from-purple-500/5 to-transparent',
+    skills: [
+      { 
+        title: 'Python & Data Ecosystem', 
+        description: 'Підготовка даних та глибоке розуміння підкапотної роботи мови.', 
+        fullDescription: 'Опанував Python як другу основну мову спеціально для стеку AI/ML. Вивчав її архітектуру не з нуля, а через призму .NET, детально порівнюючи менеджмент пам\'яті та роботу Garbage Collector. Маю досвід збору, очищення, нормалізації даних та feature engineering за допомогою NumPy та Pandas. Працюю в PyCharm, VS Code, Google Colab, Kaggle Notebooks.',
+        icon: 'simple-icons:python' 
+      },
+      { 
+        title: 'Machine & Deep Learning', 
+        description: 'Навчання класичних ML-моделей та глибоких нейромереж.', 
+        fullDescription: 'Чітко розумію різницю та архітектурні підходи між ML та DL. Працюю зі Scikit-learn та PyTorch. Маю практичний досвід створення та тренування моделей: від розв\'язання класичних задач - прогнозування виживання пасажирів Титаніку, до завдань комп\'ютерного зору - розпізнавання рукописних цифр на датасеті MNIST за допомогою нейромереж)',
+        icon: 'simple-icons:pytorch' 
+      },
+      { 
+        title: 'NLP & Hugging Face', 
+        description: 'Файн-тюнінг великих мовних моделей та аналіз природної мови.', 
+        fullDescription: 'Маю досвід роботи з архітектурою Transformers. Успішно проводив файн-тюнінг моделі BERT для класифікації та sentiment аналізу відгуків на датасеті IMDB. Починаю працювати з платформою Hugging Face для розгортання та публікації власних натренованих моделей.',
+        icon: 'simple-icons:huggingface' 
+      },
+      { 
+        title: 'AI Integration Philosophy', 
+        description: 'Прагматичний підхід до використання штучного інтелекту в розробці.', 
+        fullDescription: 'Щоденно працюю з сучасними LLM (OpenAI, Google, Anthropic). Вважаю, що AI — це потужний інструмент для прискорення рутинних завдань і збільшення бізнес-цінності, але лише за умови, що розробник повністю контролює код. Я категорично проти вайбкодингу, оскільки це випускає на ринок слабких фахівців. Мій підхід — синергія досвіду інженера та швидкості нейромереж.',
+        icon: 'tabler:bulb' 
+      }
+    ]
+  },
+  { 
+    id: 'hardware', 
+    title: 'Hardware & Embedded', 
+    icon: 'tabler:cpu',
+    color: 'text-emerald-500', 
+    bg: 'bg-emerald-500/10', 
+    border: 'border-emerald-500/20',
+    gradient: 'from-emerald-500/5 to-transparent',
+    skills: [
+      { 
+        title: 'C/C++ & Microcontrollers', 
+        description: 'Низькорівневе програмування, обробка сигналів та робота з протоколами.', 
+        fullDescription: 'Мій інженерний шлях розпочався ще у шкільні роки з Arduino Nano та створення метеостанцій. Знаючи базовий синтаксис C++, я власноруч писав логіку опрацювання кнопок, оновлення екранів та зчитування даних з датчиків. Маю досвід роботи з апаратними інтерфейсами (зокрема протоколом I2C) та розуміння архітектури мікроконтролерів.',
+        icon: 'simple-icons:cplusplus' 
+      },
+      { 
+        title: 'PCB Design & Soldering', 
+        description: 'Проєктування друкованих плат, читання даташитів та якісний монтаж.', 
+        fullDescription: 'Завдяки родинному наставництву навчився професійно паяти та розуміти схемотехніку. Маю практичний досвід розведення "голих" плат під мікроконтролери, де критично важливо опрацювати кожен контакт згідно з документацією. Вмію читати складні даташити та успішно спроєктував і виготовив кілька власних кастомних друкованих плат.',
+        icon: 'tabler:circuit-battery' 
+      },
+      { 
+        title: 'Engineering Mindset', 
+        description: 'Досвід "старої школи" дебагу та прагматичне бачення апаратної розробки.', 
+        fullDescription: 'Мій базовий досвід гартувався ще до епохи доступного AI — коли рішення доводилося годинами шукати на профільних форумах і в документації, винаходячи власні алгоритми замість готових бібліотек. Хоча зараз Embedded не є моїм основним фокусом, я вважаю навички роботи із залізом надзвичайно перспективними та критично важливими для створення реальних фізичних продуктів, особливо в поточних умовах війни.',
+        icon: 'tabler:bolt' 
+      },
+    ]
+  }
+];
+---
+
+<MainLayout title="Tech Stack | rostyslav.dev">
+  <main class="relative max-w-5xl mx-auto px-6 pb-24 min-h-screen">
+    
+    <a href="/" class="inline-flex items-center gap-2 text-sm font-bold text-apple-dark dark:text-apple-gray opacity-50 hover:opacity-100 transition-opacity duration-300 mb-10 group">
+      <Icon name="tabler:arrow-left" class="size-4 group-hover:-translate-x-1 transition-transform duration-300" />
+      На головну
+    </a>
+
+    <header class="mb-12 animate-fade-up opacity-0 [animation-fill-mode:forwards]">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6">
+        Hard Skills & Tech Stack
+      </h1>
+      <p class="text-xl opacity-60 max-w-2xl leading-relaxed">
+        Детальний огляд технологій, які я використовую для створення масштабованих систем, інтеграції AI та роботи із залізом.
+      </p>
+    </header>
+
+    <div class="sticky top-20 z-40 mb-16 animate-fade-up opacity-0 [animation-fill-mode:forwards]" style="animation-delay: 0.1s;">
+      <nav class="inline-flex justify-evenly w-full flex-wrap gap-2 p-2 rounded-2xl bg-white/85 dark:bg-apple-dark/85 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg">
+        {skillCategories.map((cat) => (
+          <a href={`#${cat.id}`} class="flex items-center gap-2 px-8 py-2 rounded-xl text-sm font-bold opacity-70 hover:opacity-100 hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300 cursor-pointer">
+            <Icon name={cat.icon} class={`size-4 ${cat.color}`} />
+            {cat.title}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <div class="space-y-32 relative z-10">
+      {skillCategories.map((cat, catIndex) => (
+        <section id={cat.id} class="scroll-mt-32 animate-fade-up opacity-0 [animation-fill-mode:forwards]" style={`animation-delay: ${0.2 + catIndex * 0.1}s;`}>
+          
+          <div class="flex items-center gap-4 mb-10">
+            <div class={`p-3 rounded-xl ${cat.bg} border ${cat.border}`}>
+              <Icon name={cat.icon} class={`size-8 ${cat.color}`} />
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+              {cat.title}
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {cat.skills.map((skill) => (
+              <button 
+                class="skill-card text-left group relative p-6 rounded-3xl bg-linear-to-br bg-white/5 dark:bg-black/20 border border-black/5 dark:border-white/5 hover:border-black/10 dark:hover:border-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden w-full cursor-pointer"
+                data-title={skill.title}
+                data-desc={skill.fullDescription}
+                data-cat={cat.title}
+                data-color={cat.color}
+                data-bg={cat.bg}
+                data-border={cat.border}
+              >
+                <div class={`absolute -right-10 -top-10 size-32 bg-linear-to-br ${cat.gradient} rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
+                <div class="flex items-start gap-5 relative z-10">
+                  <div class="icon-container shrink-0 drop-shadow-sm">
+                    <Icon name={skill.icon} class={`size-10 ${cat.color}`} />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold mb-2 tracking-tight">{skill.title}</h3>
+                    <p class="text-sm opacity-60 leading-relaxed mb-4">{skill.description}</p>
+                    <span class={`text-xs font-bold ${cat.color} opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 inline-flex items-center gap-1`}>
+                      Читати детальніше <Icon name="tabler:arrow-right" class="size-3" />
+                    </span>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+          
+        </section>
+      ))}
+    </div>
+  </main>
+
+  <dialog id="skill-modal" class="p-0 m-auto bg-transparent outline-none w-full max-w-2xl overflow-visible">
+    
+    <div class="relative w-full bg-apple-gray dark:bg-apple-dark border border-black/5 dark:border-white/10 rounded-4xl p-8 md:p-12 shadow-2xl text-left mx-4 md:mx-auto">
+      
+      <button id="modal-close" class="absolute top-6 right-6 p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors cursor-pointer">
+        <Icon name="tabler:x" class="size-5" />
+      </button>
+
+      <div class="flex items-center gap-4 mb-8 mt-2">
+        <div id="modal-icon-wrapper" class="p-4 rounded-2xl border">
+          </div>
+        <div>
+          <span id="modal-cat" class="text-xs font-bold uppercase tracking-widest opacity-60"></span>
+          <h2 id="modal-title" class="text-3xl font-black tracking-tight mt-1"></h2>
+        </div>
+      </div>
+
+      <div id="modal-desc" class="prose prose-lg dark:prose-invert prose-p:leading-relaxed prose-p:opacity-80 max-w-none">
+        </div>
+
+    </div>
+  </dialog>
+
+  <Footer />
+</MainLayout>
+
+<style is:global>
+  dialog#skill-modal[open] {
+    animation: dialog-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  dialog#skill-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    animation: backdrop-fade 0.3s ease forwards;
+  }
+  .dark dialog#skill-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  @keyframes dialog-pop {
+    0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes backdrop-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+
+<script>
+  function setupModals() {
+    const cards = document.querySelectorAll<HTMLButtonElement>('.skill-card');
+    const modal = document.getElementById('skill-modal') as HTMLDialogElement | null;
+    
+    if (!modal) return;
+
+    const closeBtn = document.getElementById('modal-close') as HTMLButtonElement | null;
+    const mTitle = document.getElementById('modal-title') as HTMLHeadingElement | null;
+    const mDesc = document.getElementById('modal-desc') as HTMLDivElement | null;
+    const mCat = document.getElementById('modal-cat') as HTMLSpanElement | null;
+    const mIconWrapper = document.getElementById('modal-icon-wrapper') as HTMLDivElement | null;
+
+    if (!closeBtn || !mTitle || !mDesc || !mCat || !mIconWrapper) return;
+
+    const modalEl = modal;
+    const closeBtnEl = closeBtn;
+    const mTitleEl = mTitle;
+    const mDescEl = mDesc;
+    const mCatEl = mCat;
+    const mIconWrapperEl = mIconWrapper;
+
+    function openModal(card: HTMLButtonElement) {
+      mTitleEl.textContent = card.dataset.title ?? '';
+      mDescEl.innerHTML = `<p>${card.dataset.desc ?? ''}</p>`;
+      mCatEl.textContent = card.dataset.cat ?? '';
+      mCatEl.className = `text-xs font-bold uppercase tracking-widest ${card.dataset.color}`;
+      mIconWrapperEl.className = `p-4 rounded-2xl border ${card.dataset.bg} ${card.dataset.border}`;
+
+      const svg = card.querySelector<SVGElement>('.icon-container svg');
+      mIconWrapperEl.innerHTML = '';
+      if (svg) {
+        const clone = svg.cloneNode(true) as SVGElement;
+        clone.setAttribute('class', `size-10 md:size-12 ${card.dataset.color}`);
+        mIconWrapperEl.appendChild(clone);
+      }
+
+      modalEl.showModal();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalEl.close();
+      document.body.style.overflow = '';
+    }
+
+    cards.forEach((card) => {
+      const newCard = card.cloneNode(true) as HTMLButtonElement;
+      const parent = card.parentNode;
+      if (!parent) return;
+      parent.replaceChild(newCard, card);
+      newCard.addEventListener('click', () => openModal(newCard));
+    });
+
+    closeBtnEl.addEventListener('click', closeModal);
+    
+    modalEl.addEventListener('click', (e: MouseEvent) => {
+      const rect = modalEl.getBoundingClientRect();
+      const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+      
+      if (!isInDialog || e.target === modalEl) {
+        closeModal();
+      }
+    });
+  }
+
+  setupModals();
+  document.addEventListener('astro:after-swap', setupModals);
+</script>

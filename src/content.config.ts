@@ -21,4 +21,15 @@ const intro = defineCollection({
   }),
 });
 
+const skills = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/skills" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+    icon: z.string(),
+  }),
+});
+
+
 export const collections = { projects, intro };
