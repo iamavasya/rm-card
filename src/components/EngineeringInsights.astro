@@ -82,7 +82,7 @@ const insights = [
                flex flex-col p-10`}
         style={`animation-delay: ${stat.delay};`}
       >
-        <div class={`absolute -right-10 -top-10 size-48 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 group-active:opacity-10 blur-3xl transition-opacity duration-700`}></div>
+        <div class={`pointer-events-none select-none absolute -right-10 -top-10 size-48 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 group-active:opacity-10 blur-3xl transition-opacity duration-700`} aria-hidden="true"></div>
 
         <div class="flex items-center gap-5 mb-8">
           <div class={`relative size-12 flex-shrink-0 group-hover:rotate-6 group-active:rotate-6 transition-transform duration-500`}>

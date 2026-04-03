@@ -119,7 +119,7 @@ const skillCategories = [
     gradient: 'from-emerald-500/5 to-transparent',
     skills: [
       { 
-        title: 'C/C++ & Microcontrollers', 
+        title: 'C++ & MCU', 
         description: 'Низькорівневе програмування, обробка сигналів та робота з протоколами.', 
         fullDescription: 'Мій інженерний шлях розпочався ще у шкільні роки з Arduino Nano та створення метеостанцій. Знаючи базовий синтаксис C++, я власноруч писав логіку опрацювання кнопок, оновлення екранів та зчитування даних з датчиків. Маю досвід роботи з апаратними інтерфейсами (зокрема протоколом I2C) та розуміння архітектури мікроконтролерів.',
         icon: 'simple-icons:cplusplus' 
@@ -220,16 +220,16 @@ const skillCategories = [
     
     <div class="relative w-xs md:w-full bg-apple-gray dark:bg-apple-dark border border-black/5 dark:border-white/10 rounded-4xl p-8 md:p-12 shadow-2xl text-left mx-auto">
       
-      <button id="modal-close" class="absolute top-6 right-6 p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 active:bg-black/10 dark:active:bg-white/10 transition-colors cursor-pointer">
+      <button id="modal-close" class="absolute top-6 right-6 z-10 p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 active:bg-black/10 dark:active:bg-white/10 transition-colors cursor-pointer">
         <Icon name="tabler:x" class="size-5" />
       </button>
 
       <div class="flex items-center gap-4 mb-8 mt-2">
         <div id="modal-icon-wrapper" class="p-4 rounded-2xl border">
           </div>
-        <div>
+        <div class="min-w-0 max-w-full">
           <span id="modal-cat" class="text-xs font-bold uppercase tracking-widest opacity-60"></span>
-          <h2 id="modal-title" class="text-3xl font-black tracking-tight mt-1"></h2>
+          <h2 id="modal-title" class="mt-1 text-3xl font-black tracking-tight leading-tight wrap-anywhere"></h2>
         </div>
       </div>
 
