@@ -77,15 +77,15 @@ const insights = [
       <div 
         class={`animate-fade-up opacity-0 group relative overflow-hidden rounded-[3rem] 
                bg-white/5 dark:bg-[#161617]/40 border border-black/5 dark:border-white/10 backdrop-blur-md 
-               transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/20
+               transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/20 active:scale-[1.02] active:border-blue-500/20
                ${stat.size === 'large' ? 'lg:col-span-2' : 'lg:col-span-1'}
                flex flex-col p-10`}
         style={`animation-delay: ${stat.delay};`}
       >
-        <div class={`absolute -right-10 -top-10 size-48 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700`}></div>
+        <div class={`absolute -right-10 -top-10 size-48 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-10 group-active:opacity-10 blur-3xl transition-opacity duration-700`}></div>
 
         <div class="flex items-center gap-5 mb-8">
-          <div class={`relative size-12 flex-shrink-0 group-hover:rotate-6 transition-transform duration-500`}>
+          <div class={`relative size-12 flex-shrink-0 group-hover:rotate-6 group-active:rotate-6 transition-transform duration-500`}>
              <div class={`absolute inset-0 bg-gradient-to-tr ${stat.gradient} ${stat.shadow} rounded-2xl`}></div>
              <div class="absolute inset-0 bg-white/10 rounded-2xl border border-white/20"></div>
              <div class="absolute top-1.5 left-1.5 right-1.5 h-4 bg-white/20 rounded-lg blur-sm"></div>

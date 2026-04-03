@@ -53,8 +53,8 @@ if (entry.data.github) {
     
     <div class="absolute top-20 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-[100px] dark:opacity-50 -z-10 pointer-events-none transition-opacity duration-500"></div>
 
-    <a href="/#projects" class="inline-flex items-center gap-2 text-sm font-bold text-[#1d1d1f] dark:text-[#f5f5f7] opacity-50 hover:opacity-100 transition-all duration-500 mb-10 group">
-      <Icon name="tabler:arrow-left" class="size-4 group-hover:-translate-x-1 transition-transform duration-500" />
+    <a href="/#projects" class="inline-flex items-center gap-2 text-sm font-bold text-[#1d1d1f] dark:text-[#f5f5f7] opacity-50 hover:opacity-100 active:opacity-100 transition-all duration-500 mb-10 group">
+      <Icon name="tabler:arrow-left" class="size-4 group-hover:-translate-x-1 group-active:-translate-x-1 transition-transform duration-500" />
       Всі проєкти
     </a>
 
@@ -89,7 +89,7 @@ if (entry.data.github) {
 
         <div class="flex items-center gap-4">
           {entry.data.github && (
-            <a href={entry.data.github} target="_blank" rel="noopener noreferrer" class="h-10 px-4 flex items-center gap-2 rounded-xl bg-[#1d1d1f] text-white dark:bg-white dark:text-[#1d1d1f] text-sm font-bold hover:scale-105 transition-all duration-500">
+            <a href={entry.data.github} target="_blank" rel="noopener noreferrer" class="h-10 px-4 flex items-center gap-2 rounded-xl bg-[#1d1d1f] text-white dark:bg-white dark:text-[#1d1d1f] text-sm font-bold hover:scale-105 active:scale-105 focus-visible:scale-105 transition-all duration-500">
               <Icon name="simple-icons:github" class="size-4" />
               Source Code
             </a>

@@ -12,7 +12,7 @@ const { title, tags, memoji } = Astro.props;
 ---
 
 <div class="intro-card-glow group relative animate-fade-up">
-  <div class="absolute -inset-10 -z-10 bg-gradient-to-r from-cyan-400 via-purple-600 to-rose-400 opacity-10 blur-[100px] transition-opacity duration-1000 group-hover:opacity-20"></div>
+  <div class="absolute -inset-10 -z-10 bg-gradient-to-r from-cyan-400 via-purple-600 to-rose-400 opacity-10 blur-[100px] transition-opacity duration-1000 group-hover:opacity-20 group-active:opacity-20"></div>
 
   <div class="glass relative flex flex-col items-center gap-10 rounded-[3rem] border border-black/5 p-12 text-center md:flex-row md:text-left dark:border-white/10">
     
@@ -20,7 +20,7 @@ const { title, tags, memoji } = Astro.props;
     <Image 
       src={memoji} 
       alt="Мемоджі Ростислава" 
-      class="size-64 animate-memoji-float hover:scale-105 transition-transform duration-500
+      class="size-64 animate-memoji-float hover:scale-105 active:scale-105 transition-transform duration-500
              object-contain object-center"
       width={256} 
       height={256}

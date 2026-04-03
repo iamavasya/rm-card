@@ -23,7 +23,7 @@ const icons = [
       >
         <Icon 
           name={icon.slug} 
-          class="size-16 md:size-24 filter blur-[2px] group-hover:blur-none transition-all duration-700 opacity-30 group-hover:opacity-100" 
+          class="size-16 md:size-24 filter blur-none md:blur-[2px] md:group-hover:blur-none transition-all duration-700 opacity-100 md:opacity-30 md:group-hover:opacity-100" 
         />
       </div>
     ))}
@@ -44,13 +44,13 @@ const icons = [
     </p>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
-      <a href="/skills" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold hover:scale-105 transition-transform shadow-xl shadow-blue-500/10">
+      <a href="/skills" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold hover:scale-105 active:scale-105 focus-visible:scale-105 transition-transform shadow-xl shadow-blue-500/10">
         Всі хард скіли
       </a>
       
-      <a href="/soft-skills" class="group/btn flex items-center gap-2 text-sm font-semibold opacity-60 hover:opacity-100 transition-opacity">
+      <a href="/soft-skills" class="group/btn flex items-center gap-2 text-sm font-semibold opacity-60 hover:opacity-100 active:opacity-100 focus-visible:opacity-100 transition-opacity">
         Шукаєте більш м'які навички?
-        <span class="group-hover/btn:translate-x-1 transition-transform">→</span>
+        <span class="group-hover/btn:translate-x-1 group-active/btn:translate-x-1 transition-transform">→</span>
       </a>
     </div>
   </div>

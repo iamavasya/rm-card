@@ -19,6 +19,8 @@ const { title } = Astro.props;
 		<script is:inline>
 			const root = document.documentElement;
 			const supportsViewTransition = typeof document.startViewTransition === 'function';
+			const contextMenuGuardKey = '__rmContextMenuBlocked';
+			const dragGuardKey = '__rmMediaDragBlocked';
 
 			const suppressThemeTransitions = () => {
 				root.classList.add('theme-switching');
@@ -71,6 +73,24 @@ const { title } = Astro.props;
 				localStorage.setItem('theme', nextTheme);
 				setThemeWithAnimation(nextTheme);
 			}, true);
+
+			if (!window[contextMenuGuardKey]) {
+				document.addEventListener('contextmenu', (event) => {
+					event.preventDefault();
+				}, { capture: true });
+				window[contextMenuGuardKey] = true;
+			}
+
+			if (!window[dragGuardKey]) {
+				document.addEventListener('dragstart', (event) => {
+					const target = event.target;
+					if (!(target instanceof Element)) return;
+					if (target.closest('img, video')) {
+						event.preventDefault();
+					}
+				}, { capture: true });
+				window[dragGuardKey] = true;
+			}
 		</script>
 	</head>
 	

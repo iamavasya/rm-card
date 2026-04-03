@@ -90,7 +90,7 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 
       <div class="flex flex-wrap justify-center gap-3">
         {[ "ProjectK", "Music", "Plast volunteer", "Hardware Enthusiast" ].map((item) => (
-          <span class="px-6 py-2 border border-black/10 dark:border-white/10 rounded-full text-xs font-semibold tracking-wide hover:border-blue-500/50 transition-colors duration-300">
+          <span class="px-6 py-2 border border-black/10 dark:border-white/10 rounded-full text-xs font-semibold tracking-wide hover:border-blue-500/50 active:border-blue-500/50 transition-colors duration-300">
             {item}
           </span>
         ))}
