@@ -68,9 +68,15 @@
     -webkit-touch-callout: default;
   }
 
+  a,
   img,
   video {
     -webkit-user-drag: none;
+  }
+
+  a,
+  button {
+    touch-action: manipulation;
   }
 
   body {
