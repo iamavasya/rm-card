@@ -30,7 +30,7 @@ order: 1
 
 Проєкт розробляється з акцентом на надійність та довговічність даних:
 
--   **Core:** .NET 9 / C#
+-   **Core:** .NET 10 / C#
 -   **Database:** SQL Server + EF Core
 -   **Architecture:** Modular Monolith
 -   **Frontend:** Angular
