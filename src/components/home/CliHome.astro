@@ -1,0 +1,161 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { engineeringInsights, experienceItems, homeCopy, techStackContent } from '../../data/home';
+import { siteConfig } from '../../data/config';
+import FigletText from '../ascii/FigletText.astro';
+import AsciiImage from '../ascii/AsciiImage.astro';
+import cliPortrait from '../../assets/iamavasya-toCli.jpg';
+
+interface Props {
+  introEntry?: CollectionEntry<'intro'>;
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { introEntry, projects } = Astro.props;
+const now = new Date().toISOString().slice(0, 10);
+const prompt = 'rostyslav@dev:~$';
+const introTitle = introEntry?.data.title ?? 'Привіт! Я Ростислав.';
+const status = siteConfig.isOpenToWork
+  ? siteConfig.statusMessages.open
+  : `${siteConfig.statusMessages.busy} ${siteConfig.workplace}`;
+const stack = techStackContent.icons
+  .map((icon) => icon.slug.replace('simple-icons:', ''))
+  .join(' / ');
+---
+
+<section class="cli-shell">
+  <div class="cli-statusbar">
+    <span>TERM=xterm-256color</span>
+    <span>SESSION=portfolio.cli</span>
+    <span>{now}</span>
+    <a href="/" class="cli-view-link">VIEW=web</a>
+  </div>
+
+  <div class="cli-window">
+    <div class="cli-hero">
+      <AsciiImage
+        imageSrc={cliPortrait.src}
+        alt="ASCII portrait of Rostyslav"
+        width={68}
+        height={40}
+        compact
+        square
+        framed={false}
+        removeDarkBackground
+        backgroundThreshold={82}
+        mobileLarge
+        class="cli-portrait"
+        caption=""
+      />
+
+      <div class="cli-title">
+        <FigletText text="Rostyslav" font="Small" />
+        <p class="cli-subtitle">software engineer / .NET / Python / architecture</p>
+      </div>
+    </div>
+
+    <div class="cli-content">
+      <section class="cli-block">
+        <p><span class="cli-command">{prompt}</span> whoami --verbose</p>
+        <div class="cli-output cli-output--indent">
+          <p class="cli-white">{introTitle}</p>
+          <p class="cli-muted">{homeCopy.eyebrow}</p>
+          <p class="cli-muted">{homeCopy.introPlainText}</p>
+          <p class="cli-dim">status: <span class="cli-amber">{status}</span></p>
+        </div>
+      </section>
+
+      <section class="cli-block">
+        <p><span class="cli-command">{prompt}</span> cat ./mission.txt</p>
+        <div class="cli-output cli-box">
+          <p class="cli-large">{homeCopy.headline} {homeCopy.headlineAccent}</p>
+          <p class="cli-muted">{homeCopy.summary}</p>
+        </div>
+      </section>
+
+      <section id="about" class="cli-block">
+        <p><span class="cli-command">{prompt}</span> less ./about.md</p>
+        <div class="cli-output cli-box">
+          <p class="cli-cyan"># {homeCopy.philosophyTitle}</p>
+          <p class="cli-muted">{homeCopy.philosophyText}</p>
+          <p class="cli-dim">tags: [{homeCopy.interests.join(', ')}]</p>
+        </div>
+      </section>
+
+      <section class="cli-block">
+        <p><span class="cli-command">{prompt}</span> ./metrics --table</p>
+        <div class="cli-output cli-table-wrap">
+          <table class="cli-table">
+            <thead>
+              <tr>
+                <th>metric</th>
+                <th>value</th>
+                <th>note</th>
+              </tr>
+            </thead>
+            <tbody>
+              {engineeringInsights.map((stat) => (
+                <tr>
+                  <td class="cli-cyan">{stat.label}</td>
+                  <td class="cli-white">{stat.value}</td>
+                  <td class="cli-muted">{stat.description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="projects" class="cli-block">
+        <p><span class="cli-command">{prompt}</span> ls -la ./projects</p>
+        <div class="cli-output cli-projects">
+          {projects.map((project, index) => (
+            <a href={`/projects/${project.id}`} class="cli-project">
+              <div class="cli-project__head">
+                <span class="cli-white">[{String(index + 1).padStart(2, '0')}] {project.data.title}</span>
+                <span class="cli-small cli-dim">{project.data.tags.join(' | ')}</span>
+              </div>
+              <p class="cli-muted">{project.data.description}</p>
+              {project.data.github && (
+                <p class="cli-small cli-cyan">source: {project.data.github}</p>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section id="experience" class="cli-block">
+        <p><span class="cli-command">{prompt}</span> git log --oneline ./experience</p>
+        <div class="cli-output cli-box cli-experience">
+          {experienceItems.map((item) => (
+            <article class="cli-experience-item">
+              <p class="cli-amber">{item.period}</p>
+              <h2 class="cli-white">{item.title}</h2>
+              <p class="cli-dim">{item.company}</p>
+              <p class="cli-muted">{item.description}</p>
+              <p class="cli-small cli-dim">stack: {item.tags.join(' / ')}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="cli-block">
+        <p><span class="cli-command">{prompt}</span> printenv STACK</p>
+        <div class="cli-output cli-box">
+          <p class="cli-muted">{stack}</p>
+          <p class="cli-dim">{techStackContent.description}</p>
+        </div>
+      </section>
+
+      <section id="contacts" class="cli-block">
+        <p><span class="cli-command">{prompt}</span> cat ./contacts.json</p>
+        <div class="cli-output cli-box">
+          <pre class="cli-json">{JSON.stringify({
+            email: siteConfig.email,
+            socials: siteConfig.socials.map(({ name, href }) => ({ name, href })),
+          }, null, 2)}</pre>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

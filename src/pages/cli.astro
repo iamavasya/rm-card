@@ -1,0 +1,11 @@
+---
+import CliLayout from '../layouts/CliLayout.astro';
+import CliHome from '../components/home/CliHome.astro';
+import { getHomePageData } from '../data/home';
+
+const homePageData = await getHomePageData();
+---
+
+<CliLayout title="rostyslav.dev | CLI">
+  <CliHome introEntry={homePageData.introEntry} projects={homePageData.projects} />
+</CliLayout>

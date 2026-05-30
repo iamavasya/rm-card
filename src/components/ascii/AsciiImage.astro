@@ -1,0 +1,155 @@
+---
+interface Props {
+  imageSrc: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  caption?: string;
+  compact?: boolean;
+  framed?: boolean;
+  square?: boolean;
+  removeDarkBackground?: boolean;
+  backgroundThreshold?: number;
+  mobileLarge?: boolean;
+  class?: string;
+}
+
+const {
+  imageSrc,
+  alt,
+  width = 52,
+  height = 28,
+  caption = 'image rendered through aalib.js',
+  compact = false,
+  framed = true,
+  square = false,
+  removeDarkBackground = false,
+  backgroundThreshold = 72,
+  mobileLarge = false,
+  class: className = '',
+} = Astro.props;
+const frameClass = framed ? 'ascii-image--framed' : '';
+const outputClass = [
+  'ascii-image__output',
+  square ? 'ascii-image__output--square' : '',
+  compact ? 'ascii-image__output--compact' : '',
+  mobileLarge ? 'ascii-image__output--mobile-large' : '',
+].filter(Boolean).join(' ');
+---
+
+<figure
+  class={`ascii-image ${frameClass} ${className}`}
+  data-ascii-image
+  data-image-src={imageSrc}
+  data-width={width}
+  data-height={height}
+  data-remove-dark-background={removeDarkBackground}
+  data-background-threshold={backgroundThreshold}
+>
+  <pre
+    class={outputClass}
+    aria-label={alt}
+  >loading ascii image...</pre>
+  {caption && (
+    <figcaption class="ascii-image__caption">
+      {caption}
+    </figcaption>
+  )}
+</figure>
+
+<script>
+  import aalib from 'aalib.js';
+
+  const loadImage = (src) => new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = src;
+  });
+
+  const createMaskedImageData = async (src, threshold) => {
+    const image = await loadImage(src);
+    const sourceSize = Math.min(image.naturalWidth, image.naturalHeight);
+    const sourceX = Math.max(0, Math.floor((image.naturalWidth - sourceSize) / 2));
+    const sourceY = Math.max(0, Math.floor((image.naturalHeight - sourceSize) / 2));
+    const canvasSize = 512;
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d', { willReadFrequently: true });
+
+    if (!context) {
+      throw new Error('Canvas 2D context is not available');
+    }
+
+    canvas.width = canvasSize;
+    canvas.height = canvasSize;
+    context.drawImage(image, sourceX, sourceY, sourceSize, sourceSize, 0, 0, canvasSize, canvasSize);
+
+    const imageData = context.getImageData(0, 0, canvasSize, canvasSize);
+    const { data } = imageData;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const brightness = (data[i] * 0.299) + (data[i + 1] * 0.587) + (data[i + 2] * 0.114);
+      const value = brightness < threshold ? 0 : 255;
+
+      data[i] = value;
+      data[i + 1] = value;
+      data[i + 2] = value;
+      data[i + 3] = 255;
+    }
+
+    return imageData;
+  };
+
+  const renderAsciiImages = () => {
+    const figures = document.querySelectorAll('[data-ascii-image]');
+
+    figures.forEach(async (figure) => {
+      if (!(figure instanceof HTMLElement)) return;
+      if (figure.dataset.rendered === 'true') return;
+
+      const output = figure.querySelector('.ascii-image__output');
+      if (!(output instanceof HTMLElement)) return;
+
+      const imageSrc = figure.dataset.imageSrc;
+      const width = Number(figure.dataset.width ?? 52);
+      const height = Number(figure.dataset.height ?? 28);
+      const shouldRemoveDarkBackground = figure.dataset.removeDarkBackground === 'true';
+      const backgroundThreshold = Number(figure.dataset.backgroundThreshold ?? 72);
+
+      if (!imageSrc) return;
+
+      figure.dataset.rendered = 'true';
+
+      try {
+        const reader = shouldRemoveDarkBackground
+          ? aalib.read.imageData.fromImageData(await createMaskedImageData(imageSrc, backgroundThreshold))
+          : aalib.read.image.fromURL(imageSrc);
+
+        reader
+          .map(aalib.filter.contrast(1.12))
+          .map(aalib.filter.brightness(8))
+          .map(aalib.filter.inverse())
+          .map(aalib.aa({ width, height }))
+          .map(aalib.render.html({
+            el: output,
+            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+            fontSize: 7,
+            background: 'transparent',
+            color: '#f4f4f5',
+            charset: [' ', '.', ':', '-', '=', '+', '*', '#', '%', '@'],
+          }))
+          .subscribe(
+            () => {},
+            () => {
+              output.textContent = 'ascii image render failed';
+            }
+          );
+      } catch {
+        output.textContent = 'ascii image render failed';
+      }
+    });
+  };
+
+  renderAsciiImages();
+  document.addEventListener('astro:page-load', renderAsciiImages);
+</script>

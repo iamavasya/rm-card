@@ -1,60 +1,11 @@
 ---
-const insights = [
-  {
-    label: "Рядків коду",
-    value: "1.2M+",
-    description: "Написано, відрефакторено та закоммічено з початку 2022 року",
-    size: "large",
-    gradient: "from-blue-600 via-cyan-500 to-teal-400",
-    shadow: "shadow-blue-500/20",
-    delay: "0.1s"
-  },
-  {
-    label: "Dev Fuel",
-    value: "450+",
-    description: "Кружок кави та банок енергетиків для Deep Work сесій",
-    size: "small",
-    gradient: "from-orange-500 via-rose-500 to-amber-400",
-    shadow: "shadow-orange-500/20",
-    delay: "0.2s"
-  },
-  {
-    label: "Deep Work",
-    value: "4,200+",
-    description: "Годин концентрації в IDE, терміналі та за дебагом",
-    size: "small",
-    gradient: "from-purple-600 via-indigo-500 to-sky-400",
-    shadow: "shadow-purple-500/20",
-    delay: "0.3s"
-  },
-  {
-    label: "Bugs Fixed",
-    value: "∞",
-    description: "Виправлених помилок, збережених нервів та закритих тікетів",
-    size: "small",
-    gradient: "from-emerald-500 via-teal-500 to-lime-400",
-    shadow: "shadow-emerald-500/20",
-    delay: "0.4s"
-  },
-  {
-    label: "Проєкти",
-    value: "5+",
-    description: "Доведено до релізу: від скриптів до мікросервісів",
-    size: "small",
-    gradient: "from-fuchsia-600 via-purple-500 to-pink-400",
-    shadow: "shadow-fuchsia-500/20",
-    delay: "0.5s"
-  },
-  {
-    label: "Stack Transition",
-    value: ".NET → Py",
-    description: "Успішний перехід зі стеку .NET на Python для AI/ML проєкту в GlobalLogic.",
-    size: "large",
-    gradient: "from-yellow-400 to-orange-500",
-    shadow: "shadow-yellow-500/20",
-    delay: "0.2s"
-  },
-];
+import { engineeringInsights } from '../data/home';
+
+interface Props {
+  insights?: typeof engineeringInsights;
+}
+
+const { insights = engineeringInsights } = Astro.props;
 ---
 
 <section id="insights" class="max-w-6xl mx-auto px-6 py-28 transition-colors duration-500">

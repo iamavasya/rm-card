@@ -1,0 +1,33 @@
+---
+import figlet from 'figlet';
+
+interface Props {
+  text: string;
+  font?: string;
+  class?: string;
+}
+
+const { text, font = 'Small', class: className = '' } = Astro.props;
+
+let asciiText = text;
+
+try {
+  asciiText = figlet.textSync(text, {
+    font,
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+    width: 80,
+    whitespaceBreak: true,
+  });
+} catch {
+  asciiText = text;
+}
+
+asciiText = asciiText
+  .split('\n')
+  .map((line) => line.trimEnd())
+  .join('\n')
+  .trimEnd();
+---
+
+<pre class={`figlet-text ${className}`} aria-label={`${text} ASCII logo`}>{asciiText}</pre>
