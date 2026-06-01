@@ -15,9 +15,11 @@ const { introEntry, projects } = Astro.props;
 const now = new Date().toISOString().slice(0, 10);
 const prompt = 'rostyslav@dev:~$';
 const introTitle = introEntry?.data.title ?? 'Привіт! Я Ростислав.';
-const status = siteConfig.isOpenToWork
-  ? siteConfig.statusMessages.open
-  : `${siteConfig.statusMessages.busy} ${siteConfig.workplace}`;
+const status = {
+  busy: `${siteConfig.statusMessages.busy} ${siteConfig.workplace}`,
+  passive: `${siteConfig.statusMessages.passive} ${siteConfig.workplace}`,
+  open: siteConfig.statusMessages.open,
+}[siteConfig.availabilityStatus];
 const stack = techStackContent.icons
   .map((icon) => icon.slug.replace('simple-icons:', ''))
   .join(' / ');

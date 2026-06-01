@@ -1,0 +1,267 @@
+---
+import { Icon } from 'astro-icon/components';
+import Footer from '../../components/Footer.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const softSkills = [
+  {
+    title: 'Пласт і волонтерство',
+    eyebrow: 'Community ownership',
+    description: 'Досвід відповідальності за людей, процеси та довгі ініціативи поза комерційною розробкою.',
+    details:
+      'Пласт - Національна Скаутська Організація України, до якої я належу, дала мені практику роботи з командами, де важливі довіра, ініціатива і здатність доводити справи до кінця. Я належу до організації з 2013 року, і завдячую цій організації відшліфованими софт скілами. Це переноситься в інженерію напряму: я спокійніше беру відповідальність, краще бачу контекст задачі та думаю не лише про код, а й про людей, які ним користуються.',
+    icon: 'tabler:flag',
+    accent: 'text-emerald-500',
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/20',
+  },
+  {
+    title: 'Командна робота',
+    eyebrow: 'Teamwork',
+    description: 'Вмію синхронізуватися з командою, працювати в Scrum-процесі й тримати фокус на спільному результаті.',
+    details:
+      'У командній роботі для мене важливі прозорість, короткий фідбек-луп і чесне проговорення ризиків. Маю практичний досвід роботи в Scrum: планування, refinement, daily sync, review і retrospective. Я можу працювати автономно, але не випадаю з контексту команди: уточнюю очікування, документую рішення та підтримую передбачуваний темп роботи.',
+    icon: 'tabler:users-group',
+    accent: 'text-blue-500',
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20',
+  },
+  {
+    title: 'Тайм-менеджмент',
+    eyebrow: 'Delivery discipline',
+    description: 'Планую роботу навколо пріоритетів, дедлайнів і реальної складності задач; практикую Trello та Scrum.',
+    details:
+      'Я декомпоную задачі на зрозумілі кроки, відділяю критичний шлях від другорядного і намагаюся рано підсвітити невизначеність. Для організації роботи вмію користуватися Trello та Scrum-дошками: вести задачі по статусах, тримати пріоритети й не губити контекст між ітераціями. Такий підхід допомагає не накопичувати приховані ризики перед дедлайном.',
+    icon: 'tabler:clock-hour-4',
+    accent: 'text-amber-500',
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/20',
+  },
+  {
+    title: 'Problem solving',
+    eyebrow: 'Analytical skills',
+    description: 'Розкладаю складні проблеми на факти, гіпотези та перевірки, щоб не лікувати симптоми замість причини.',
+    details:
+      'У дебазі та проєктуванні люблю рухатися від спостережень до доказів: перевірити припущення, знайти найменше відтворення, оцінити побічні ефекти рішення. Це особливо корисно в системах, де одна зміна може зачепити кілька шарів.',
+    icon: 'tabler:puzzle',
+    accent: 'text-cyan-500',
+    bg: 'bg-cyan-500/10',
+    border: 'border-cyan-500/20',
+  },
+  {
+    title: 'Аналітичне мислення',
+    eyebrow: 'Systems thinking',
+    description: 'Дивлюся на задачу як на частину системи: дані, процес, користувачі, підтримка та майбутні зміни.',
+    details:
+      'Мені близький інженерний підхід, де рішення має бути не просто робочим сьогодні, а зрозумілим для підтримки завтра. Тому я звертаю увагу на причини вимог, межі відповідальності, якість даних і довгострокову вартість підтримки.',
+    icon: 'tabler:chart-dots-3',
+    accent: 'text-indigo-500',
+    bg: 'bg-indigo-500/10',
+    border: 'border-indigo-500/20',
+  },
+  {
+    title: 'Комунікація',
+    eyebrow: 'Clear context',
+    description: 'Пишу й говорю так, щоб рішення, ризики та наступні кроки були зрозумілі; вмію вести проєктну документацію.',
+    details:
+      'Сильна комунікація для мене - це не багато тексту, а точний контекст. Вмію працювати з Notion, Obsidian або іншими додатками для ведення документації чи Wiki-сторінок проєкту: структурувати нотатки, рішення, вимоги, чеклісти й робочі сторінки так, щоб команда могла швидко знайти потрібну інформацію. Я стараюся формулювати проблему, запропонований варіант, компроміси й очікуваний результат так, щоб команда могла швидко прийняти рішення.',
+    icon: 'tabler:message-circle',
+    accent: 'text-rose-500',
+    bg: 'bg-rose-500/10',
+    border: 'border-rose-500/20',
+  },
+  {
+    title: 'Адаптивність',
+    eyebrow: 'Learning speed',
+    description: 'Швидко входжу в новий домен, стек або процес, але не плутаю швидкість з хаотичністю.',
+    details:
+      'Перехід між .NET, фронтендом, AI/ML і hardware-напрямами навчив мене швидко будувати ментальну модель нового середовища. Я не намагаюся одразу знати все, але швидко знаходжу опорні точки й перевіряю знання практикою.',
+    icon: 'tabler:compass',
+    accent: 'text-violet-500',
+    bg: 'bg-violet-500/10',
+    border: 'border-violet-500/20',
+  },
+];
+---
+
+<MainLayout title="Soft Skills | rostyslav.dev">
+  <main class="relative max-w-6xl mx-auto px-6 pb-24 min-h-screen">
+    <div class="mb-10 flex flex-wrap items-center justify-between gap-4">
+      <a href="/" class="inline-flex items-center gap-2 text-sm font-bold text-apple-dark dark:text-apple-gray opacity-50 hover:opacity-100 active:opacity-100 transition-opacity duration-300 group">
+        <Icon name="tabler:arrow-left" class="size-4 group-hover:-translate-x-1 group-active:-translate-x-1 transition-transform duration-300" />
+        На головну
+      </a>
+
+      <a href="/skills" class="inline-flex items-center gap-2 text-sm font-bold opacity-50 hover:opacity-100 active:opacity-100 transition-opacity duration-300 group">
+        Hard skills
+        <Icon name="tabler:arrow-right" class="size-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform duration-300" />
+      </a>
+    </div>
+
+    <header class="mb-12 animate-fade-up opacity-0 [animation-fill-mode:forwards]">
+      <span class="inline-block text-[11px] font-bold uppercase tracking-[0.3em] text-blue-500 mb-5">
+        Beyond code
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-6">
+        Soft Skills
+      </h1>
+      <p class="text-xl opacity-60 max-w-3xl leading-relaxed">
+        Практичні навички, які допомагають мені працювати з людьми, тримати темп і приймати сильні інженерні рішення в реальному контексті.
+      </p>
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6 relative z-10">
+      {softSkills.map((skill, index) => (
+        <button
+          class="soft-skill-card group relative min-h-[260px] overflow-hidden rounded-3xl border border-black/5 dark:border-white/5 bg-white/45 dark:bg-black/25 backdrop-blur-sm p-6 text-left transition-all duration-300 hover:scale-[1.015] active:scale-[1.015] hover:shadow-2xl active:shadow-2xl hover:border-black/10 dark:hover:border-white/10 active:border-black/10 dark:active:border-white/10 cursor-pointer animate-fade-up opacity-0 [animation-fill-mode:forwards]"
+          style={`animation-delay: ${0.12 + index * 0.07}s;`}
+          data-title={skill.title}
+          data-eyebrow={skill.eyebrow}
+          data-desc={skill.details}
+          data-accent={skill.accent}
+          data-bg={skill.bg}
+          data-border={skill.border}
+        >
+          <div class={`absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500 bg-linear-to-br ${skill.bg} to-transparent`}></div>
+          <div class={`absolute -right-8 -top-8 size-32 rounded-full blur-2xl ${skill.bg} opacity-70`}></div>
+
+          <div class="relative z-10 flex h-full flex-col justify-between gap-8">
+            <div class="flex items-start justify-between gap-5">
+              <div>
+                <span class={`mb-3 block text-[11px] font-bold uppercase tracking-[0.22em] ${skill.accent}`}>
+                  {skill.eyebrow}
+                </span>
+                <h2 class="text-2xl md:text-3xl font-black tracking-tight leading-tight">
+                  {skill.title}
+                </h2>
+              </div>
+
+              <div class={`grid size-12 md:size-14 shrink-0 place-items-center overflow-hidden rounded-2xl border ${skill.bg} ${skill.border}`}>
+                <Icon name={skill.icon} class={`size-6 md:size-7 max-h-7 max-w-7 ${skill.accent}`} />
+              </div>
+            </div>
+
+            <div>
+              <p class="text-sm md:text-base opacity-65 leading-relaxed max-w-xl">
+                {skill.description}
+              </p>
+              <span class={`mt-5 inline-flex items-center gap-1 text-xs font-bold ${skill.accent} opacity-0 -translate-x-2 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-active:translate-x-0 group-active:opacity-100`}>
+                Детальніше <Icon name="tabler:arrow-right" class="size-3" />
+              </span>
+            </div>
+          </div>
+        </button>
+      ))}
+    </section>
+  </main>
+
+  <dialog id="soft-skill-modal" class="p-0 m-auto bg-transparent outline-none w-full max-w-2xl overflow-visible">
+    <div class="relative w-xs md:w-full bg-apple-gray dark:bg-apple-dark border border-black/5 dark:border-white/10 rounded-4xl p-8 md:p-12 shadow-2xl text-left mx-auto">
+      <button id="soft-modal-close" class="absolute top-6 right-6 z-10 p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 active:bg-black/10 dark:active:bg-white/10 transition-colors cursor-pointer" aria-label="Закрити">
+        <Icon name="tabler:x" class="size-5" />
+      </button>
+
+      <div class="flex items-center gap-4 mb-8 mt-2">
+        <div id="soft-modal-icon-wrapper" class="p-4 rounded-2xl border"></div>
+        <div class="min-w-0 max-w-full">
+          <span id="soft-modal-eyebrow" class="text-xs font-bold uppercase tracking-widest opacity-60"></span>
+          <h2 id="soft-modal-title" class="mt-1 text-3xl font-black tracking-tight leading-tight wrap-anywhere"></h2>
+        </div>
+      </div>
+
+      <div id="soft-modal-desc" class="prose prose-lg dark:prose-invert prose-p:leading-relaxed prose-p:opacity-80 max-w-none"></div>
+    </div>
+  </dialog>
+
+  <Footer />
+</MainLayout>
+
+<style is:global>
+  dialog#soft-skill-modal[open] {
+    animation: soft-dialog-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  dialog#soft-skill-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    animation: soft-backdrop-fade 0.3s ease forwards;
+  }
+
+  .dark dialog#soft-skill-modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  @keyframes soft-dialog-pop {
+    0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes soft-backdrop-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+
+<script>
+  function setupSoftSkillModals() {
+    const cards = document.querySelectorAll<HTMLButtonElement>('.soft-skill-card');
+    const modal = document.getElementById('soft-skill-modal') as HTMLDialogElement | null;
+
+    if (!modal) return;
+
+    const closeBtn = document.getElementById('soft-modal-close') as HTMLButtonElement | null;
+    const mTitle = document.getElementById('soft-modal-title') as HTMLHeadingElement | null;
+    const mDesc = document.getElementById('soft-modal-desc') as HTMLDivElement | null;
+    const mEyebrow = document.getElementById('soft-modal-eyebrow') as HTMLSpanElement | null;
+    const mIconWrapper = document.getElementById('soft-modal-icon-wrapper') as HTMLDivElement | null;
+
+    if (!closeBtn || !mTitle || !mDesc || !mEyebrow || !mIconWrapper) return;
+
+    function openModal(card: HTMLButtonElement) {
+      mTitle.textContent = card.dataset.title ?? '';
+      mDesc.innerHTML = `<p>${card.dataset.desc ?? ''}</p>`;
+      mEyebrow.textContent = card.dataset.eyebrow ?? '';
+      mEyebrow.className = `text-xs font-bold uppercase tracking-widest ${card.dataset.accent}`;
+      mIconWrapper.className = `p-4 rounded-2xl border ${card.dataset.bg} ${card.dataset.border}`;
+
+      const svg = card.querySelector<SVGElement>('svg');
+      mIconWrapper.innerHTML = '';
+      if (svg) {
+        const clone = svg.cloneNode(true) as SVGElement;
+        clone.setAttribute('class', `size-10 md:size-12 ${card.dataset.accent}`);
+        mIconWrapper.appendChild(clone);
+      }
+
+      modal.showModal();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.close();
+      document.body.style.overflow = '';
+    }
+
+    cards.forEach((card) => {
+      const newCard = card.cloneNode(true) as HTMLButtonElement;
+      const parent = card.parentNode;
+      if (!parent) return;
+      parent.replaceChild(newCard, card);
+      newCard.addEventListener('click', () => openModal(newCard));
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event: MouseEvent) => {
+      const rect = modal.getBoundingClientRect();
+      const isInDialog = rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
+
+      if (!isInDialog || event.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  setupSoftSkillModals();
+  document.addEventListener('astro:after-swap', setupSoftSkillModals);
+</script>

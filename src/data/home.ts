@@ -75,7 +75,7 @@ export const engineeringInsights = [
   },
   {
     label: 'Bugs Fixed',
-    value: 'inf',
+    value: '∞',
     description: 'Виправлених помилок, збережених нервів та закритих тікетів',
     size: 'small',
     gradient: 'from-emerald-500 via-teal-500 to-lime-400',
@@ -93,7 +93,7 @@ export const engineeringInsights = [
   },
   {
     label: 'Stack Transition',
-    value: '.NET -> Py',
+    value: '.NET → Py',
     description: 'Успішний перехід зі стеку .NET на Python для AI/ML проєкту в GlobalLogic.',
     size: 'large',
     gradient: 'from-yellow-400 to-orange-500',

@@ -1,13 +1,14 @@
 export const siteConfig = {
-  isOpenToWork: false, 
+  availabilityStatus: "passive" as "busy" | "passive" | "open",
   
   workplace: "GlobalLogic",
 
   email: "rostyslav.mukha@gmail.com",
   
   statusMessages: {
+    busy: "Busy at",
+    passive: "Passively open while at",
     open: "Open to new opportunities",
-    busy: "Currently at",
   },
 
   socials: [
