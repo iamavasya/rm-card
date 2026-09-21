@@ -104,6 +104,10 @@
   .animate-fade-up {
     animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
+
+  .glass {
+    @apply bg-white/60 dark:bg-[#161617]/40 backdrop-blur-md;
+  }
 }
 
 .layer-fast {

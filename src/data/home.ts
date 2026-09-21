@@ -20,12 +20,20 @@ export const homeCopy = {
 
 export const experienceItems = [
   {
-    period: '2022 - 2026',
-    title: 'Студент',
-    company: 'Західноукраїнський національний університет, Тернопіль',
+    period: 'Серпень 2026 - зараз',
+    title: 'Software Engineer',
+    company: 'SMART business',
     description:
-      "Навчання на факультеті комп'ютерних інформаційних технологій, спеціальність - ІСТ. Активна участь у студентських проєктах.",
-    tags: ['C++', 'C#', 'Algorithms & Data Structures', 'Git', 'Docker', 'GitHub', 'CI/CD'],
+      'Розробка бізнес-рішень на стеку Microsoft: проєктування та імплементація сервісів, інтеграції та робота з клієнтськими вимогами.',
+    tags: ['.NET', 'C#', 'Azure', 'SQL', 'Microsoft Stack'],
+  },
+  {
+    period: '2025 - 2026',
+    title: 'Associate Software Engineer',
+    company: 'GlobalLogic Ukraine',
+    description:
+      'Продовження роботи в проєкті над веб-додатком для медичних клінік. Розробка складних функцій, оптимізація продуктивності та участь у плануванні спринтів. Перехід на Python стек для AI ML проєкту.',
+    tags: ['.NET', 'Python', 'AI/ML', 'PyTorch', 'Scikit-learn'],
   },
   {
     period: '2024 - 2025',
@@ -36,12 +44,12 @@ export const experienceItems = [
     tags: ['.NET', 'Angular', 'Web Development', 'Agile', 'SQL Server', 'Azure'],
   },
   {
-    period: '2025 - 2026',
-    title: 'Associate Software Engineer',
-    company: 'GlobalLogic Ukraine',
+    period: '2022 - 2026',
+    title: 'Студент',
+    company: 'Західноукраїнський національний університет, Тернопіль',
     description:
-      'Продовження роботи в проєкті над веб-додатком для медичних клінік. Розробка складних функцій, оптимізація продуктивності та участь у плануванні спринтів. Перехід на Python стек для AI ML проєкту.',
-    tags: ['.NET', 'Python', 'AI/ML', 'PyTorch', 'Scikit-learn'],
+      "Навчання на факультеті комп'ютерних інформаційних технологій, спеціальність - ІСТ. Активна участь у студентських проєктах.",
+    tags: ['C++', 'C#', 'Algorithms & Data Structures', 'Git', 'Docker', 'GitHub', 'CI/CD'],
   },
 ];
 
@@ -123,7 +131,7 @@ export const techStackContent = {
 
 export type HomePageData = {
   introEntry: CollectionEntry<'intro'> | undefined;
-  IntroContent: Awaited<ReturnType<typeof render<CollectionEntry<'intro'>>>>['Content'] | undefined;
+  IntroContent: Awaited<ReturnType<typeof render<'intro'>>>['Content'] | undefined;
   projects: CollectionEntry<'projects'>[];
 };
 

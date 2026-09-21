@@ -1,7 +1,7 @@
 export const siteConfig = {
-  availabilityStatus: "passive" as "busy" | "passive" | "open",
+  availabilityStatus: "busy" as "busy" | "passive" | "open",
   
-  workplace: "GlobalLogic",
+  workplace: "SMART business",
 
   email: "rostyslav.mukha@gmail.com",
   
